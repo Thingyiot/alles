@@ -26,7 +26,7 @@ var paths = {
 };
 
 
-gulp.task('default',['scripts','images','sass','minify-css','minify-html','root'], function() {
+gulp.task('default',['build'], function() {
   // place code for your default task here
    return gulp.src('src/app.js')
         .pipe(ngmin({dynamic: true}))
@@ -84,6 +84,11 @@ gulp.task('root', function(){
 function copyRootFiles(destination) {
   
 }
+
+gulp.task('build', ['scripts','images','sass','minify-css','minify-html'], function(cb) {
+  // You can use multiple globbing patterns as you would with `gulp.src`
+});
+
 
 gulp.task('clean', function(cb) {
   // You can use multiple globbing patterns as you would with `gulp.src`

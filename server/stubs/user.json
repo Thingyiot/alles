@@ -1,0 +1,8 @@
+{
+	"user":{
+	   "userName":"dummy",
+	   "password":"dummy",
+	   "email":"dummy@email.com",
+	   "salt":"@ndpepper"
+	}
+}

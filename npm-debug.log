@@ -1,0 +1,67 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '--save', 'path' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 warn package.json iot-app@0.0.1 No description
+5 warn package.json iot-app@0.0.1 No repository field.
+6 warn package.json http@0.0.0 http is also the name of a node core module.
+7 warn package.json http@0.0.0 No description
+8 warn package.json http@0.0.0 No repository field.
+9 warn package.json http@0.0.0 No README data
+10 verbose readDependencies using package.json deps
+11 verbose cache add [ 'path', null ]
+12 verbose cache add name=undefined spec="path" args=["path",null]
+13 verbose parsed url { protocol: null,
+13 verbose parsed url   slashes: null,
+13 verbose parsed url   auth: null,
+13 verbose parsed url   host: null,
+13 verbose parsed url   port: null,
+13 verbose parsed url   hostname: null,
+13 verbose parsed url   hash: null,
+13 verbose parsed url   search: null,
+13 verbose parsed url   query: null,
+13 verbose parsed url   pathname: 'path',
+13 verbose parsed url   path: 'path',
+13 verbose parsed url   href: 'path' }
+14 silly lockFile 3150ecd5-path path
+15 verbose lock path /Users/prashun/.npm/3150ecd5-path.lock
+16 silly lockFile 3150ecd5-path path
+17 silly lockFile 3150ecd5-path path
+18 verbose addNamed [ 'path', '' ]
+19 verbose addNamed [ null, '*' ]
+20 silly lockFile 9741fa74-path path@
+21 verbose lock path@ /Users/prashun/.npm/9741fa74-path.lock
+22 silly addNameRange { name: 'path', range: '*', hasData: false }
+23 verbose request where is /path
+24 verbose request registry https://registry.npmjs.org/
+25 verbose request id 836e2f9ab260708a
+26 verbose url raw /path
+27 verbose url resolving [ 'https://registry.npmjs.org/', './path' ]
+28 verbose url resolved https://registry.npmjs.org/path
+29 verbose request where is https://registry.npmjs.org/path
+30 info trying registry request attempt 1 at 08:39:51
+31 http GET https://registry.npmjs.org/path
+32 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND
+33 info trying registry request attempt 2 at 08:40:01
+34 http GET https://registry.npmjs.org/path
+35 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND
+36 info trying registry request attempt 3 at 08:41:01
+37 http GET https://registry.npmjs.org/path
+38 silly lockFile 9741fa74-path path@
+39 silly lockFile 9741fa74-path path@
+40 error network getaddrinfo ENOTFOUND
+40 error network This is most likely not a problem with npm itself
+40 error network and is related to network connectivity.
+40 error network In most cases you are behind a proxy or have bad network settings.
+40 error network
+40 error network If you are behind a proxy, please make sure that the
+40 error network 'proxy' config is set properly.  See: 'npm help config'
+41 error System Darwin 14.0.0
+42 error command "node" "/usr/local/bin/npm" "install" "--save" "path"
+43 error cwd /Users/prashun/alles
+44 error node -v v0.10.33
+45 error npm -v 1.4.28
+46 error syscall getaddrinfo
+47 error code ENOTFOUND
+48 error errno ENOTFOUND
+49 verbose exit [ 1, true ]

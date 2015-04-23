@@ -1,7 +1,7 @@
 'use strict';
  
 // simple express server
-var express = require('./server');
+var server = require('./server');
 var express = require('express');
 var http = require('http');
 var app = express();
@@ -18,17 +18,12 @@ var app = express();
 // ORM
 // require('./orm')(app);
 
-// Mongodb
-// require('./odm')(orm);
-
 // sequalize
 // require('./sequalize')(orm);
 
 //  cacheing 
 //  require('./cacheing')(app);
 
-// fixtures
-// require('./fixtures')(app);
 
 
 // transpots

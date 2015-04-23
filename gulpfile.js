@@ -101,11 +101,6 @@ gulp.task('partials',['clean'], function() {
     .pipe(gulp.dest(destination));
 });
 
-gulp.task('browser-sync', ['inject','nodemon'], function() {
-   browserSync.init({
-        server: "client"
-    });
-});
 
 gulp.task('nodemon', function (cb) {
   return nodemon({

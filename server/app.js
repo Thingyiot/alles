@@ -1,9 +1,10 @@
 'use strict';
  
 // simple express server
+var express = require('./server');
 var express = require('express');
+var http = require('http');
 var app = express();
-
 
 //  authentication (get from primus) 
 //  require('./authentication')(app);
@@ -29,6 +30,7 @@ var app = express();
 // fixtures
 // require('./fixtures')(app);
 
+
 // transpots
 // require('./transpots')(app);
 
@@ -44,6 +46,10 @@ var app = express();
 
  // Routing
 require('./routes')(app);
+
+
+app.server = http.createServer(app);
+app.server.listen(9000);
 
 // Expose app
 exports = module.exports = app;

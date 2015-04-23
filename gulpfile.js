@@ -11,12 +11,13 @@ var htmlmin = require('gulp-htmlmin');
 var bower = require('gulp-bower');
 var nodemon = require('gulp-nodemon');
 var server = require('gulp-express');
-var browserSync = require('browser-sync');
+var browserSync = require('browser-sync').create();
 var inject = require('gulp-inject');
 
 var del = require('del');
 var es = require('event-stream');
 var bowerFiles = require('main-bower-files');
+var reload      = browserSync.reload;
 
 var paths = {
   scripts: ['client/assets/js/**/*.js','client/src/**/*.js'],
@@ -77,7 +78,8 @@ gulp.task('minify-css', ['clean'], function() {
     .pipe(sourcemaps.init())
     .pipe(minifycss())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(destination));
+    .pipe(gulp.dest(destination))
+    .pipe(reload({stream: true}));;
 });
 
 gulp.task('minify-html',['clean'], function() {
@@ -100,12 +102,9 @@ gulp.task('partials',['clean'], function() {
 });
 
 gulp.task('browser-sync', ['inject','nodemon'], function() {
-  browserSync.init(null, {
-        proxy: "http://localhost:5000",
-        files: ["client/**/*.*"],
-        browser: "google chrome",
-        port: 7000,
-  });
+   browserSync.init({
+        server: "client"
+    });
 });
 
 gulp.task('nodemon', function (cb) {
@@ -116,22 +115,31 @@ gulp.task('nodemon', function (cb) {
   });
 });
 
+
 gulp.task('inject', function () {
   var destination = paths.buildDir + '/src';
   var target = gulp.src(paths.html);
   // It's not necessary to read the files (will speed up things), we're only after their paths: 
   var sources = gulp.src(['./src/**/*.js', './src/**/*.css'], {read: false},{relative: true});
- 
- 
   return target.pipe(inject(sources))
     .pipe(inject(gulp.src(bowerFiles(), {read: false}), {name: 'bower'}))
     .pipe(gulp.dest(paths.buildDir));
 });
 
-gulp.task('build', ['scripts','images','sass','minify-css','minify-html','partials','browser-sync'], function(cb) {
+gulp.task('build', ['scripts','images','sass','minify-css','minify-html','partials','inject'], function(cb) {
   // You can use multiple globbing patterns as you would with `gulp.src`
+   return startServer(false);
 });
 
+function startServer() {
+    return nodemon({
+        script: 'server/app.js'
+      }).on('start', function () {
+          browserSync.init({
+              server: "client"
+          });
+      });
+}
 
 gulp.task('clean', function(cb) {
   del(['build'], cb);

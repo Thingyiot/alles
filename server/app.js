@@ -1,0 +1,21 @@
+'use strict';
+ 
+// simple express server
+var express = require('express');
+var app = express();
+var router = express.Router();
+ 
+app.use(express.static('client'));
+
+// a middleware with no mount path, gets executed for every request to the router
+router.use(function (req, res, next) {
+  console.log('Time:', Date.now());
+  next();
+});
+
+
+app.get('/', function(req, res) {
+    res.sendfile('client/index.html');
+});
+ 
+app.listen(5000);

@@ -8,23 +8,33 @@ var minifycss = require('gulp-minify-css');
 var ngHtml2Js = require('gulp-ng-html2js');
 var ngmin = require('gulp-ngmin');
 var htmlmin = require('gulp-htmlmin');
-var template = require('gulp-template');
-var header = require('gulp-header');
-var footer = require('gulp-footer');
+var bower = require('gulp-bower');
+var nodemon = require('gulp-nodemon');
+var server = require('gulp-express');
+var browserSync = require('browser-sync');
 var inject = require('gulp-inject');
 
 var del = require('del');
+var es = require('event-stream');
+var bowerFiles = require('main-bower-files');
 
 var paths = {
-  scripts: ['client/js/**/*.js'],
-  sass: [ 'client/src/**/*.scss'],
-  css: [ 'client/src/**/*.css'],
-  html:['client/src/**/*.html'],
+  scripts: ['client/assets/js/**/*.js','client/src/**/*.js'],
+  sass: [ 'client/assets/sass/*.scss'],
+  css: [ 'client/assets/css/*.css'],
+  html:['client/src/**/*.html','client/assets/**/*.html'],
   fonts: ['client/assets/fonts/**'],
+  templates: ['client/assets/partials/**/*.html'],
   images: 'client/img/**/*',
+  index:'client/index.html',
   buildDir: 'build/tmp'
 };
 
+var config={
+    script: 'server/server.js'
+  , ext: 'js html'
+  , env: { 'NODE_ENV': 'development' }
+  }
 
 gulp.task('default',['build'], function() {
   // place code for your default task here
@@ -56,7 +66,7 @@ gulp.task('images', ['clean'], function() {
 gulp.task('sass',['clean'],  function(){
   var destination = paths.buildDir + '/css';
   return gulp.src(paths.sass)
-    .pipe(concat('$$sass.css'))
+    .pipe(concat('main.scss'))
     .pipe(sass())
     .pipe(gulp.dest(destination));
 });
@@ -77,20 +87,52 @@ gulp.task('minify-html',['clean'], function() {
     .pipe(gulp.dest(destination))
 });
 
-gulp.task('root', function(){
-    return copyRootFiles(paths.buildDir);
+gulp.task('partials',['clean'], function() {
+  var destination = paths.buildDir + '/partials';
+  return gulp.src(paths.templates)
+    .pipe(ngHtml2Js({
+        moduleName: "Partials",
+        prefix: "/partials"
+    }))
+    .pipe(concat("partials.min.js"))
+    .pipe(uglify())
+    .pipe(gulp.dest(destination));
 });
 
-function copyRootFiles(destination) {
-  
-}
+gulp.task('browser-sync', ['inject','nodemon'], function() {
+  browserSync.init(null, {
+        proxy: "http://localhost:5000",
+        files: ["client/**/*.*"],
+        browser: "google chrome",
+        port: 7000,
+  });
+});
 
-gulp.task('build', ['scripts','images','sass','minify-css','minify-html'], function(cb) {
+gulp.task('nodemon', function (cb) {
+  return nodemon({
+    script: 'server/app.js'
+  }).on('restart', function () {
+      cb();
+  });
+});
+
+gulp.task('inject', function () {
+  var destination = paths.buildDir + '/src';
+  var target = gulp.src(paths.html);
+  // It's not necessary to read the files (will speed up things), we're only after their paths: 
+  var sources = gulp.src(['./src/**/*.js', './src/**/*.css'], {read: false},{relative: true});
+ 
+ 
+  return target.pipe(inject(sources))
+    .pipe(inject(gulp.src(bowerFiles(), {read: false}), {name: 'bower'}))
+    .pipe(gulp.dest(paths.buildDir));
+});
+
+gulp.task('build', ['scripts','images','sass','minify-css','minify-html','partials','browser-sync'], function(cb) {
   // You can use multiple globbing patterns as you would with `gulp.src`
 });
 
 
 gulp.task('clean', function(cb) {
-  // You can use multiple globbing patterns as you would with `gulp.src`
   del(['build'], cb);
 });

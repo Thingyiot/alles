@@ -15,16 +15,8 @@ var app = express();
 // security
 // require('./crytonode')(app);
 
-// ORM
-// require('./orm')(app);
-
-// sequalize
-// require('./sequalize')(orm);
-
 //  cacheing 
 //  require('./cacheing')(app);
-
-
 
 // transpots
 // require('./transpots')(app);

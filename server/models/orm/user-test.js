@@ -1,9 +1,10 @@
 
+ var config = require('../../config/config');
+ var userSchema=require(config.build.schemas.user);
+ var scheme=new userSchema();
+
 module.exports = function (db, cb) {
-        db.define('person', {
-            name : String
-        });
-
+        var user=scheme.get();
+        db.define('User', user);
         return cb();
-
 };

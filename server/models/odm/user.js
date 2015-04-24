@@ -1,7 +1,13 @@
 'use strict';
 
+  var config = require('../../config/config');
+  var userSchema=require(config.build.schemas.user);
+  var scheme=new userSchema();
+
 module.exports = function(mongoose) {
-  
+
+var user=scheme.get();
+
   var db = mongoose.connection,
       Schema = mongoose.Schema,
       TYPE = 'User';
@@ -9,24 +15,7 @@ module.exports = function(mongoose) {
   /**
    * User Schema
    */
-  var schema = new Schema({
-    name: String,
-    email: {
-      type: String,
-      unique: true
-    },
-    role: {
-      type: String,
-      default: 'user'
-    },
-    hashedPassword: String,
-    provider: String,
-    salt: String,
-    facebook: {},
-    twitter: {},
-    github: {},
-    google: {}
-  });
+  var schema = new Schema(user);
 
   /**
    * Expose type to outside world.

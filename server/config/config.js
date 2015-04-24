@@ -15,6 +15,9 @@ module.exports = {
     mock:{
     	user:'../../stubs/user.json'
      },
+     schemas:{
+      user:'../../schemas/userSchema'
+     },
     routes:{
     	root:'./routes',
     	api:{

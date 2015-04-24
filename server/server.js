@@ -1,10 +1,14 @@
 var documentMapper=require('./odm');
-var sqlMapper=require('./orm');
-// fixtures
-// require('./fixtures')(app);
+var relationalMapper=require('./orm');
 
-var mongo=new documentMapper('mongodb://appContracts:!2014*TuRner!@ds027749.mongolab.com:27749/contracts-dev');
-var sql=new sqlMapper('postgres://user:pass@example.com:5432/dbname');
+var options={
+	mongo:'mongodb://chuggh:mongo@ds049219.mongolab.com:49219/chuggh',
+	relational:'mysql://localhost:3306/'
+};
 
-mongo.connect();
-sql.connect();
+var mongo=new documentMapper();
+mongo.connect(options.mongo);
+mongo.bootStrapModels();
+
+var sql=new relationalMapper();
+sql.connect(options.relational);

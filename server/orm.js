@@ -1,26 +1,28 @@
-var Sequelize = require('sequelize');
+
 var path = require('path');
 var fs = require('fs');
+var relational = require('orm');
 
-
-function orm(url){ 
-	this.url=url;
+function orm(link){ 
+	this.link=link;
 } 
 
-orm.prototype.connect=function(){ 
-  var sequelize = new Sequelize(this.url);
+orm.prototype.connect=function(url){ 
+  var db = relational.connect(url);
+  db.on('connect', function(err) {
+  if (err) return console.error('Connection error: ' + err);
+      	  console.log('Connected to:'+url);
+      	  bootStrapModels(db);
+  });
 } 
 
 
-orm.prototype.bootStrapModels=function(){ 
-
-var modelsPath = path.join(__dirname, 'models/orm');
-fs.readdirSync(modelsPath).forEach(function (file) {
-  require(modelsPath + '/' + file)(mongoose);
-});
-
+function bootStrapModels(db){ 
+		var modelsPath = path.join(__dirname, 'models/orm');
+         db.load(modelsPath , function (err) {
+			    var Person = db.models.person;
+		 });
 } 
-
 
 orm.prototype.get=function(modelName){ 
 	

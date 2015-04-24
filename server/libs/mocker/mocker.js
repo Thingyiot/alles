@@ -1,4 +1,6 @@
-var user= require('./stubs/user.json');
+
+   var config = require('../../config/config');
+   var user= require(config.build.mock.user);
 
 function stub(name){ 
 	this.name=name;

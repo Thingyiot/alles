@@ -1,6 +1,9 @@
-var mongoose = require('mongoose');
-var path = require('path');
-var fs = require('fs');
+
+var config = require('../../../config/config');
+var path = require(config.modules.path);
+var fs = require(config.modules.fs);
+var mongoose = require(config.modules.mongoose);
+
 
 function odm(link){ 
    this.link=link;
@@ -16,7 +19,7 @@ odm.prototype.connect=function(url){
 } 
 
 odm.prototype.bootStrapModels=function(){ 
-	var modelsPath = path.join(__dirname, 'models/odm');
+	var modelsPath = path.join(__dirname, '../../../models/odm');
 	fs.readdirSync(modelsPath).forEach(function (file) {
 	  require(modelsPath + '/' + file)(mongoose);
 	});

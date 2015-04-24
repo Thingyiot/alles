@@ -3,11 +3,8 @@
 module.exports = function(mongoose) {
   
   var db = mongoose.connection,
-      uniqueValidator = require('mongoose-unique-validator'),
       Schema = mongoose.Schema,
-      crypto = require('crypto');
-
-  var TYPE = 'User';
+      TYPE = 'User';
 
   /**
    * User Schema

@@ -1,9 +1,10 @@
 'use strict';
  
 // simple express server
-var server = require('./server');
-var express = require('express');
-var http = require('http');
+var config = require('./config/config');
+var server = require(config.build.server);
+var express = require(config.modules.express);
+var http = require(config.modules.http);
 var app = express();
 
 //  authentication (get from primus) 
@@ -18,26 +19,10 @@ var app = express();
 //  cacheing 
 //  require('./cacheing')(app);
 
-// transpots
-// require('./transpots')(app);
-
-// socketio
-// require('./socketio')(transpots);
-
-// amqp
-// require('./amqp')(transpots);
-
-// primus
-// require('./primus')(transpots);
-
 
  // Routing
-require('./routes')(app);
-
-
+require(config.build.routes.root)(app);
 app.server = http.createServer(app);
 app.server.listen(9000);
-
-// Expose app
 exports = module.exports = app;
 

@@ -1,7 +1,7 @@
-
-var path = require('path');
-var fs = require('fs');
-var relational = require('orm');
+var config = require('../../../config/config');
+var path = require(config.modules.path);
+var fs = require(config.modules.fs);
+var relational = require(config.modules.orm);
 
 function orm(link){ 
 	this.link=link;
@@ -18,7 +18,7 @@ orm.prototype.connect=function(url){
 
 
 function bootStrapModels(db){ 
-		var modelsPath = path.join(__dirname, 'models/orm');
+		var modelsPath = path.join(__dirname, '../../../models/orm');
          db.load(modelsPath , function (err) {
 			    var Person = db.models.person;
 		 });

@@ -3,13 +3,9 @@
 module.exports = {
   env: 'development',
   mongo: {
-    uri: 'mongodb://appContracts:!2014*TuRner!@ds027749.mongolab.com:27749/contracts-dev'
+    uri: 'mongodb://chuggh:mongo@ds049219.mongolab.com:49219/chuggh'
   },
-  redis: {
-  	server: '',
-  	secretKey: 'SeekQret',
-  	prefix: 'sess-dev',
-  	port: 6383,
-  	db: 0
+  mysql: {
+    uri: 'mysql://localhost:3306/'
   }
 };

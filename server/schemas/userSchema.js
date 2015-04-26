@@ -1,5 +1,5 @@
 var user={
-     displayName:String;
+     displayName:String,
      name: String,
      email: {
        type: String

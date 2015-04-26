@@ -26,21 +26,6 @@ odm.prototype.bootStrapModels=function(){
 	});
 } 
 
-odm.prototype.get=function(modelName){ 
-	
-} 
-
-odm.prototype.upsert=function(modelName){ 
-	
-} 
-
-odm.prototype.update=function(modelName){ 
-	
-} 
-
-odm.prototype.delete=function(modelName){ 
-	
-} 
 
 // Expose app
 exports = module.exports = odm;

@@ -1,8 +1,82 @@
 {
-	"user":{
-	   "userName":"dummy",
-	   "password":"dummy",
-	   "email":"dummy@email.com",
-	   "salt":"@ndpepper"
-	}
+  "startIndex": 10,
+  "itemsPerPage": 10,
+  "totalResults": 12,
+  "entry": [
+    {
+      "id": "123",
+      "displayName": "Minimal Contact"
+    },
+    {
+      "id": "703887",
+      "displayName": "Mork Hashimoto",
+      "name": {
+        "familyName": "Hashimoto",
+        "givenName": "Mork"
+      },
+      "tags": [
+        "plaxo guy",
+        "favorite"
+      ],
+      "emails": [
+        {
+          "value": "mhashimoto-04@plaxo.com",
+          "type": "work",
+          "primary": "true"
+        },
+        {
+          "value": "mhashimoto-04@plaxo.com",
+          "type": "home"
+        },
+        {
+          "value": "mhashimoto@plaxo.com",
+          "type": "home"
+        }
+      ],
+      "urls": [
+        {
+          "value": "http://www.seeyellow.com",
+          "type": "work"
+        },
+        {
+          "value": "http://www.angryalien.com",
+          "type": "home"
+        }
+      ],
+      "phoneNumbers": [
+        {
+          "value": "KLONDIKE5",
+          "type": "work"
+        },
+        {
+          "value": "650-123-4567",
+          "type": "mobile"
+        }
+      ]
+      ,
+      "addresses": [
+        {
+          "type": "home",
+          "streetAddress": "742 Evergreen Terrace\nSuite 123",
+          "locality": "Springfield",
+          "region": "VT",
+          "postalCode": "12345",
+          "country": "USA",
+          "formatted": "742 Evergreen Terrace\nSuite 123\nSpringfield, VT 12345 USA"
+        }
+      ],
+      "organizations": [
+        {
+          "name": "Burns Worldwide",
+          "title": "Head Bee Guy"
+        }
+      ],
+      "accounts": [
+        {
+          "domain": "plaxo.com",
+          "userid": "2706"
+        }
+      ]
+    }
+  ]
 }

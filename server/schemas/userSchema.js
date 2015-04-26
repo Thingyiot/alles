@@ -1,14 +1,17 @@
 var user={
+     displayName:String;
      name: String,
      email: {
        type: String
      },
-     role: {
-      type: String,
-      default: 'user'
-      },
-      hashedPassword: String,
-      salt: String
+     published: {
+       type: String
+     },
+     updated: {
+       type: String
+     },
+     hashedPassword: String,
+     salt: String
 }
 
 

@@ -1,5 +1,5 @@
 
-function userPojo(userName,password,email,sshKey){ 
+function User(userName,password,email,sshKey){ 
 	this.userName=userName;
 	this.password=password;
 	this.email=email;
@@ -21,19 +21,20 @@ function Pojifier() {
     }
   });
 
-}
-
-userPojo.prototype.init=function(){ 
-      arc = new Pojifier();
 } 
 
-userPojo.prototype.set=function(key,value){ 
+User.prototype.create=function(){ 
+      arc = new Pojifier();
+      return  arc;
+} 
+
+User.prototype.set=function(key,value){ 
   if(key==='userName'){
 		 arc.username=value;
 	}
 } 
 
-userPojo.prototype.get=function(key){ 
+User.prototype.get=function(key){ 
 	if(key==='userName'){
 		return arc.username;
 	}
@@ -41,4 +42,4 @@ userPojo.prototype.get=function(key){
 } 
 
 // Expose app
-exports = module.exports = userPojo;
+exports = module.exports = User;

@@ -1,45 +1,37 @@
 
-function userPojo(userName,password,email,sshKey){ 
-	this.userName=userName;
-	this.password=password;
-	this.email=email;
+function User(sshKey){ 
 	this.sshKey=sshKey;
+
+  Object.defineProperty(this, 'sshKey', {
+       get: function() {
+          console.log('get userName ..');
+          return sshKey;
+        },
+        set: function(value) {
+          sshKey= value;
+        }
+      });
 } 
 
 var arc =null;
 
-function Pojifier() {
-  var userName = null;
-
-  Object.defineProperty(this, 'userName', {
-    get: function() {
-      console.log('get userName ..');
-      return userName;
-    },
-    set: function(value) {
-      userName = value;
-    }
-  });
-
-}
- 
-userPojo.prototype.create=function(){ 
-      arc = new Pojifier();
+User.prototype.init=function(){ 
+      arc = new User();
       return arc;
 } 
 
-userPojo.prototype.set=function(key,value){ 
-  if(key==='userName'){
-		 arc.username=value;
+User.prototype.set=function(key,value){ 
+  if(key==='sshKey'){
+		 arc.sshKey=value;
 	}
 } 
 
-userPojo.prototype.get=function(key){ 
-	if(key==='userName'){
-		return arc.username;
+User.prototype.get=function(key){ 
+	if(key==='sshKey'){
+		return arc.sshKey;
 	}
     
 } 
 
 // Expose app
-exports = module.exports = userPojo;
+exports = module.exports = User;

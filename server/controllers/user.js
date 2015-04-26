@@ -19,32 +19,18 @@
   }
   
  controller.create= function(req, res) {
-    var user=new User(req.body.user);
-    user.save(sender(res));
+
   };
 
   controller.show= function(req, res) {
-    return User.find({},sender(res));
+
   };
 
   controller.getUserByName=function(req, res) {
-     return User.find({'name':req.params.username},sender(res));
+   
   };
 
  controller.updateUserByName=function(req, res) {
-
-  var oldUser;
-     Device.find({'name':req.body.name}, function (err, user) {
-      if (!err) {
-        oldUser=user;
-        //get current value  using key 
-        //set new value 
-         user.save(sender(res));
-
-      } else {
-        return res.send(err);
-      }
-    });
 
  }
 

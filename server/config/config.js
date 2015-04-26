@@ -1,4 +1,5 @@
 'use strict';
+'use strict';
 
 module.exports = {
  build : {
@@ -6,8 +7,8 @@ module.exports = {
     mocker:'./libs/mocker/mocker',
     db:{
     	mappers:{
-    		doc:'../libs/database/odm/odm',
-    		relational:'../libs/database/orm/orm',
+    		doc:'./libs/database/odm/odm',
+    		relational:'./libs/database/orm/orm',
     		keyValue:'',
     		graph:''
     	}

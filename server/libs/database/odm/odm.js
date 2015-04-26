@@ -20,6 +20,7 @@ odm.prototype.connect=function(url){
 
 odm.prototype.bootStrapModels=function(){ 
 	var modelsPath = path.join(__dirname, '../../../models/odm');
+	console.log(modelsPath);
 	fs.readdirSync(modelsPath).forEach(function (file) {
 	  require(modelsPath + '/' + file)(mongoose);
 	});

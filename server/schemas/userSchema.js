@@ -1,15 +1,13 @@
 var user={
      name: String,
      email: {
-     type: String,
-     unique: true
+       type: String
      },
      role: {
       type: String,
       default: 'user'
       },
       hashedPassword: String,
-      provider: String,
       salt: String
 }
 

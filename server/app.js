@@ -1,28 +1,30 @@
 'use strict';
  
-// simple express server
 var config = require('./config/config');
-var server = require(config.build.server);
-var express = require(config.modules.express);
-var http = require(config.modules.http);
-var app = express();
+var app = require('express')();  
 
-//  authentication (get from primus) 
-//  require('./authentication')(app);
+      
+var bodyParser = require('body-parser');
+var errorHandler = require('errorhandler'),
+    favicon = require('serve-favicon'),
+  	cookieParser = require('cookie-parser'),
+    methodOverride = require('method-override');
 
-// sessions
-// require('./sessions')(app);
+var documentMapper=require('./libs/database/odm/odm');
+var dev=require('./config/env/development');
 
-// security
-// require('./crytonode')(app);
+var mongo=new documentMapper();
+	mongo.connect(dev.mongo.uri);
+	mongo.bootStrapModels();
 
-//  cacheing 
-//  require('./cacheing')(app);
+  	app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(methodOverride());
+    app.use(cookieParser());    
 
 
- // Routing
-require(config.build.routes.root)(app);
-app.server = http.createServer(app);
-app.server.listen(9000);
-exports = module.exports = app;
+require(config.build.routes.root)(app);                  
 
+app.listen(9000);                       
+
+module.exports = app;  

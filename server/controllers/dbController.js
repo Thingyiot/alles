@@ -1,12 +1,7 @@
 'use strict';
 
-   var User = require('mongoose').model('User'),
-     _ = require('lodash'),
-    controller = {};
 
-    var Pojo=require('../pojos/User');
-    var _user=new Pojo();
-    _user.init();
+  var controller={};
 
   function sender(res) {
     return function(err, result) {

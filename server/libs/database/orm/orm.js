@@ -19,17 +19,10 @@ relational.connect(url, function (err, db) {
 
 
 function bootStrapModels(db){ 
- var Person= require('../../../models/orm/person')(db);
-
-     
-		var newRecord = {};
-			newRecord.id= 5;
-			newRecord.name = "Johnybgo"
-			Person.create(newRecord, function(err, results) {
-				if (err) throw err;
-			    console.log('Succsessfully Inserted Record');
-		 });
-        
+ var Person= require('../../../models/orm/person')(db);   
+ var helper=require('../../../helpers/dbHelper'); 
+ var _helper=new helper();
+ _helper.create('relational','mysql','create',Person,{"newRecord":{"id":13,"name":"gianni"}});
 } 
 
 

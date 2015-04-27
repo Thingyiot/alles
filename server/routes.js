@@ -1,7 +1,7 @@
 module.exports = function(app) {
 
    var mongoose = require('mongoose');
-   var user = require('./controllers/user');
+   var dbController = require('./controllers/dbController');
    var config = require('./config/config');
    var smockito=require(config.build.mocker);
    var stub=new smockito("user");

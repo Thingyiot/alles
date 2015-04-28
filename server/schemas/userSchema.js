@@ -4,7 +4,7 @@ var user={
      email: {
        type: String
      },
-     published: {
+     added: {
        type: String
      },
      updated: {

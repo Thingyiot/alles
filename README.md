@@ -19,8 +19,11 @@ Action:
 
 Data:
 
+```
+
 {
 	"newRecord":{
+
 		     "deviceUID":12231,
 		     "deviceType":"String",
 		     "deviceName" :"String",
@@ -31,3 +34,5 @@ Data:
 		}
 }
 
+
+```

@@ -1,6 +1,5 @@
 var documentMapper=require('../libs/database/odm/odm');
 var relationalMapper=require('../libs/database/orm/orm');
-
 var mysql=new relationalMapper();	
 
 function dbHelper(model){
@@ -30,8 +29,8 @@ dbHelper.prototype.create=function (dbType,database,action,model,json){
 }
 
 dbHelper.prototype.getModel=function(modelName){
-	if(modelName === 'person'){
-		return mysql.getModel('person');
+	if(modelName === 'device'){
+		return mysql.getModel('device');
 	}
 }
 

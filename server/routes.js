@@ -10,7 +10,6 @@ module.exports = function(app) {
 		  res.send(stub.getStubs()[0].value.user);
 		});
          
-         //_helper.create('relational','mysql','create',Person,{"newRecord":{"id":14,"name":"gianni"}});
          app.post('/:type/:db/:model/create', dbController.create);
 
 }

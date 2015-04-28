@@ -17,20 +17,15 @@
   }
   
  controller.create= function(req, res) {
-
-
      console.log({params:req.params});
      console.log({requestBody:req.body});
      var model = _helper.getModel(req.params.model);
-    try{
-
-      //should check if id already exists befor creating a record 
-     _helper.create(req.params.type,req.params.db,'create',model,req.body);
-   }
-   catch(err){
-         //console.log(err);
-        throw new Error(err);
-   }
+      try{
+       _helper.create(req.params.type,req.params.db,'create',model,req.body);
+      }
+      catch(err){
+          throw new Error(err);
+      }
   }
 
   controller.show= function(req, res) {

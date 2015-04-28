@@ -6,25 +6,18 @@
  
   var controller={};
 
-  function sender(res) {
-    return function(err, result) {
-      if (!err) {
-        return res.json(result);
-      }
-      console.log(err);
-      return res.json(500, err);
-    };
-  }
   
  controller.create= function(req, res) {
      console.log({params:req.params});
      console.log({requestBody:req.body});
      var model = _helper.getModel(req.params.model);
       try{
-       _helper.create(req.params.type,req.params.db,'create',model,req.body);
+         _helper.create(req.params.type,req.params.db,'create',model,req.body);
+         res.send({inserted:{requestBody:req.body}});
       }
       catch(err){
           throw new Error(err);
+          res.send({error:err});
       }
   }
 

@@ -2,6 +2,7 @@
   "name": "iot-app",
   "version": "0.0.1",
   "dependencies": {
+    "bluebird": "^2.9.24",
     "body-parser": "^1.12.3",
     "browser-sync": "^2.6.4",
     "cassandra-client": "^0.15.2",

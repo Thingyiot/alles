@@ -36,3 +36,24 @@ Request:
 
 
 ```
+
+Response:
+
+```
+{
+inserted: {
+	requestBody: {
+		newRecord: {
+		deviceUID: 12231
+		deviceType: "String"
+		deviceName: "String"
+		deviceBrand: "String"
+		deviceIP: "String"
+		deviceMAC: "String"
+		created: "String"
+		id: null
+		}
+	}
+}
+
+```

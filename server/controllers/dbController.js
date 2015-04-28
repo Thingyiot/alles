@@ -2,8 +2,7 @@
 
    var helper=require('../helpers/dbHelper'); 
    var _helper=new helper();
-   var Promise = require("bluebird");
- 
+  
   var controller={};
 
   

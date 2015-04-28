@@ -11,12 +11,9 @@ dbHelper.prototype.create=function (dbType,database,action,model,json){
 
 	}
     else if(dbType === 'relational' &&  database === 'mysql' && action === 'create'){
-         	var newRecord = {};
-			newRecord.id= json.newRecord.id;
-			newRecord.name = json.newRecord.name;
 
          try{
-			model.create(newRecord, function(err, results) {
+			model.create(json.newRecord, function(err, results) {
 				if (err) throw err;
 			    console.log('Succsessfully Inserted Record Into db' + database );
 		   });

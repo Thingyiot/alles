@@ -20,8 +20,21 @@
       }
   }
 
-  controller.show= function(req, res) {
+  controller.findOne= function(req, res) {
+     console.log({params:req.params});
+     console.log({requestBody:req.body});
 
+     var model = _helper.getModel(req.params.model);
+
+      try{
+        var results = _helper.findOne(req.params.type,req.params.db,'findOne',model,req.body);
+                         console.log(results);
+         res.send({result:{responseBody:results}});
+      }
+      catch(err){
+          throw new Error(err);
+          res.send({error:err});
+      }
   };
 
   controller.getUserByName=function(req, res) {

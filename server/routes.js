@@ -11,5 +11,6 @@ module.exports = function(app) {
 		});
          
          app.post('/:type/:db/:model/create', dbController.create);
+         app.post('/:type/:db/:model/findone', dbController.findOne);
 
 }

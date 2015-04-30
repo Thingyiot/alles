@@ -9,7 +9,7 @@ function dbHelper(model){
    
 }
 
-dbHelper.prototype.create=function (dbType,database,action,model,json){
+dbHelper.prototype.create=function (dbType,database,action,model,json,res){
 	if(dbType === 'document' && database === 'mongo'  && action === 'create' ){
 
 	}
@@ -19,6 +19,7 @@ dbHelper.prototype.create=function (dbType,database,action,model,json){
 			model.create(json.newRecord, function(err, results) {
 				if (err) throw err;
 			    console.log('Succsessfully Inserted Record Into db' + database );
+			     res.send({inserted:{requestBody:req.body}});
 		   });
 		}
 		catch(err){
@@ -47,7 +48,9 @@ dbHelper.prototype.findMany=function (dbType,database,action,model,req,res){
 
 	}
     else if(dbType === 'relational' &&  database === 'mysql' && action === 'findMany'){
-	    		
+      model.find({id: [1, 2]}, function(err, obj) {
+		  res.send({result:{responseBody:obj}});
+	  });				
      }
      
 }

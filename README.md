@@ -9,6 +9,14 @@ Polyglot Persistance primer for Node Js Resful Services
 
 2) MySql
 
+3) MariaDB
+
+4) PostgreSQL
+
+5) Amazon Redshift
+
+6) SQLite
+
 
 ## Create a device 
 
@@ -98,3 +106,52 @@ Response:
 
 ```
 
+URL :
+
+ http://localhost:9000/relational/mysql/device/findMany
+
+ Action:
+ Post
+
+Request:
+
+```
+{
+	"query":
+	{
+	"id":[1,2]
+    }
+}
+
+```
+
+Response:
+
+```
+{
+result: {
+	responseBody: [2]
+		0:  {
+			deviceUID: 12231
+			deviceType: "String"
+			deviceName: "String"
+			deviceBrand: "String"
+			deviceIP: "String"
+			deviceMAC: "String"
+			created: "String"
+			id: 1
+		}
+		1:  {
+			deviceUID: 12232
+			deviceType: "String"
+			deviceName: "String"
+			deviceBrand: "String"
+			deviceIP: "String"
+			deviceMAC: "String"
+			created: "String"
+			id: 2
+		}
+	}
+}
+
+```

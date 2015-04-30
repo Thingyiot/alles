@@ -11,8 +11,7 @@
      console.log({requestBody:req.body});
      var model = _helper.getModel(req.params.model);
       try{
-         _helper.create(req.params.type,req.params.db,'create',model,req.body);
-         res.send({inserted:{requestBody:req.body}});
+         _helper.create(req.params.type,req.params.db,'create',model,req.body,res);
       }
       catch(err){
           throw new Error(err);
@@ -28,7 +27,6 @@
 
       try{
         var result = _helper.findOne(req.params.type,req.params.db,'findOne',model,req.body,res);
-
       }
       catch(err){
           throw new Error(err);
@@ -36,8 +34,19 @@
       }
   };
 
-  controller.getUserByName=function(req, res) {
-   
+  controller.findMany=function(req, res) {
+     console.log({params:req.params});
+     console.log({requestBody:req.body});
+
+     var model = _helper.getModel(req.params.model);
+
+      try{
+        var result = _helper.findMany(req.params.type,req.params.db,'findMany',model,req.body,res);
+      }
+      catch(err){
+          throw new Error(err);
+          res.send({error:err});
+      }
   };
 
  controller.updateUserByName=function(req, res) {

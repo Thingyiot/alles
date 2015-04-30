@@ -2,9 +2,11 @@ var documentMapper=require('../libs/database/odm/odm');
 var relationalMapper=require('../libs/database/orm/orm');
 var mysql=new relationalMapper();	
 var _ = require('lodash');
+var x;
 
 function dbHelper(model){
  this.model=model;
+   
 }
 
 dbHelper.prototype.create=function (dbType,database,action,model,json){
@@ -26,42 +28,28 @@ dbHelper.prototype.create=function (dbType,database,action,model,json){
 	}
 }
 
-dbHelper.prototype.findOne=function (dbType,database,action,model,json){
-	var transformedResults ;
+dbHelper.prototype.findOne=function (dbType,database,action,model,req,res){
+	
 	if(dbType === 'document' && database === 'mongo'  && action === 'create' ){
 
 	}
     else if(dbType === 'relational' &&  database === 'mysql' && action === 'findOne'){
-			model.find({"id":1}, function (err, results) {
-               if (err) throw err;
-                transformedResults = transform(results);   
-               
-        	 }); 
-
-			     return  transformedResults;
+	    var call= model.get(req.query.id, function(err, obj) {
+	           res.send({result:{responseBody:obj}});
+		 });			
      }
-
-
+     
 }
 
-function transform(results){
+dbHelper.prototype.findMany=function (dbType,database,action,model,req,res){
+	
+	if(dbType === 'document' && database === 'mongo'  && action === 'create' ){
 
-var res = [];
-var reformattedArray;
-
-_.forEach(results, function(resultVal, resultKey) {
-	 _.forEach(resultVal, function(val,key) {	
-         res.push({ key : key  , value: val});
-	});
-});
-
-reformattedArray = res.map(function(obj){ 
-	 var rObj = {};
-	 rObj[obj.key] = obj.value;
-	 return rObj;
-});
-
-	return reformattedArray ;
+	}
+    else if(dbType === 'relational' &&  database === 'mysql' && action === 'findMany'){
+	    		
+     }
+     
 }
 
 dbHelper.prototype.getModel=function(modelName){

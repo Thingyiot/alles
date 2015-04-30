@@ -6,6 +6,7 @@ Polyglot Persistance primer for Node Js Resful Services
 ###Support 
 
 1) MongoDB
+
 2) MySql
 
 
@@ -57,3 +58,43 @@ inserted: {
 }
 
 ```
+
+## Find a device 
+
+URL :
+ http://localhost:9000/relational/mysql/device/findone
+
+Action:
+ Post
+
+Request:
+
+```
+{
+	"query":{
+	    "id":1
+	}
+}
+
+```
+
+Response:
+
+```
+{
+	result: {
+		responseBody: {
+		deviceUID: 12231
+		deviceType: "String"
+		deviceName: "String"
+		deviceBrand: "String"
+		deviceIP: "String"
+		deviceMAC: "String"
+		created: "String"
+		id: 1
+		}
+	}
+}
+
+```
+

@@ -2,7 +2,7 @@
 
    var helper=require('../helpers/dbHelper'); 
    var _helper=new helper();
-  
+
   var controller={};
 
   
@@ -27,9 +27,8 @@
      var model = _helper.getModel(req.params.model);
 
       try{
-        var results = _helper.findOne(req.params.type,req.params.db,'findOne',model,req.body);
-                         console.log(results);
-         res.send({result:{responseBody:results}});
+        var result = _helper.findOne(req.params.type,req.params.db,'findOne',model,req.body,res);
+
       }
       catch(err){
           throw new Error(err);

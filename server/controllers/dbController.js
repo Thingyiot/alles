@@ -3,18 +3,21 @@
    var helper=require('../helpers/dbHelper'); 
    var _helper=new helper();
 
+   var logger=require('../config/logger'); 
+
   var controller={};
 
   
  controller.create= function(req, res) {
-     console.log({params:req.params});
-     console.log({requestBody:req.body});
+     logger.info({params:req.params});
+     logger.info({requestBody:req.body});
      var model = _helper.getModel(req.params.model);
       try{
          _helper.create(req.params.type,req.params.db,'create',model,req.body,res);
       }
       catch(err){
           throw new Error(err);
+          logger.error({error:err});
           res.send({error:err});
       }
   }

@@ -21,6 +21,7 @@ module.exports = {
      },
     routes:{
     	root:'./routes',
+      secure:'./secure',
     	api:{
     		user: {
     			stub:{

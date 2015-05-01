@@ -13,5 +13,7 @@ module.exports = function(app) {
          app.post('/:type/:db/:model/create', dbController.create);
          app.post('/:type/:db/:model/findone', dbController.findOne);
          app.post('/:type/:db/:model/findMany', dbController.findMany);
+         app.post('/:type/:db/:model/count', dbController.count);
+         app.post('/:type/:db/:model/delete', dbController.del);
 
 }

@@ -16,10 +16,10 @@ dbHelper.prototype.create=function (dbType,database,action,model,json,res){
     else if(dbType === 'relational' &&  database === 'mysql' && action === 'create'){
 
          try{
-			model.create(json.newRecord, function(err, results) {
+			model.create(json.record, function(err, results) {
 				if (err) throw err;
 			    console.log('Succsessfully Inserted Record Into db' + database );
-			     res.send({inserted:{requestBody:req.body}});
+			     res.send({inserted:{record:json.record}});
 		   });
 		}
 		catch(err){
@@ -35,12 +35,13 @@ dbHelper.prototype.findOne=function (dbType,database,action,model,req,res){
 
 	}
     else if(dbType === 'relational' &&  database === 'mysql' && action === 'findOne'){
-	    var call= model.get(req.query.id, function(err, obj) {
-	           res.send({result:{responseBody:obj}});
+	    var call= model.get(req.params.id, function(err, obj) {
+	           res.send({result:obj});
 		 });			
      }
      
 }
+
 
 dbHelper.prototype.findMany=function (dbType,database,action,model,req,res){
 	
@@ -48,12 +49,39 @@ dbHelper.prototype.findMany=function (dbType,database,action,model,req,res){
 
 	}
     else if(dbType === 'relational' &&  database === 'mysql' && action === 'findMany'){
-      model.find({id: [1, 2]}, function(err, obj) {
-		  res.send({result:{responseBody:obj}});
+      model.find(req.params, function(err, obj) {
+		  res.send({result:obj});
 	  });				
      }
      
 }
+
+dbHelper.prototype.del=function (dbType,database,action,model,req,res){
+	
+	if(dbType === 'document' && database === 'mongo'  && action === 'create' ){
+
+	}
+    else if(dbType === 'relational' &&  database === 'mysql' && action === 'delete'){
+	   	model.find(req.params.id).remove(function (err) {
+            res.send({result:"Delete Successful!"});
+        });
+     }
+     
+}
+
+dbHelper.prototype.count=function (dbType,database,action,model,req,res){
+	
+	if(dbType === 'document' && database === 'mongo'  && action === 'create' ){
+
+	}
+    else if(dbType === 'relational' &&  database === 'mysql' && action === 'count'){
+         model.find().count(function (err, count) {
+ 		    res.send({result:count});
+		});	
+     }
+     
+}
+
 
 dbHelper.prototype.getModel=function(modelName){
 	if(modelName === 'device'){

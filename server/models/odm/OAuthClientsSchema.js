@@ -14,13 +14,24 @@ module.exports = function(mongoose) {
 
   var schema = new Schema({
     clientId: {
-      type: String
+      type: String,
+      required: true
     },
     clientSecret: {
-      type: String
+      type: String,
+      required: true
     },
     redirectUri: {
-      type: String
+      type: String,
+      required: true
+    },
+    secret: {
+      type: String,
+      required: true
+    },
+    userId: {
+      type: String,
+      required: true
     }
   });
 

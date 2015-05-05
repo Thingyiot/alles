@@ -33,6 +33,14 @@ odm.prototype.getModel = function(modelName, action, json) {
     }
     return OAuthAccessTokens;
   }
+  if (modelName == 'client') {
+    var OAuthClients = mongoose.model('OAuthClients');
+    if (action === 'create') {
+      token = new OAuthClients(json);
+      return token;
+    }
+    return OAuthClients;
+  }
 }
 
 // Expose app

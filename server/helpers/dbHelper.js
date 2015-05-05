@@ -65,8 +65,8 @@ dbHelper.prototype.findOne = function(dbType, database, action, model, req, res)
 dbHelper.prototype.findMany = function(dbType, database, action, model, req, res) {
   if (dbType === 'document' && database === 'mongo' && action === 'findMany') {
     mongo.getModel(model, action).find({
-      '_id': {
-        $in:req.params.id
+      'id': {
+        $in: req.params.id
       }
     }, function(err, obj) {
       logger.info({
@@ -89,8 +89,21 @@ dbHelper.prototype.findMany = function(dbType, database, action, model, req, res
 }
 
 dbHelper.prototype.del = function(dbType, database, action, model, req, res) {
-  if (dbType === 'document' && database === 'mongo' && action === 'create') {
+  if (dbType === 'document' && database === 'mongo' && action === 'delete') {
+    mongo.getModel(model, action).remove({
+      id: req.params.id
+    }, function(err) {
+      if (!err) {
+        logger.info({
+          result: "Delete Successful!"
+        });
+        res.send({
+          result: "Delete Successful!"
+        });
+      }
 
+
+    });
   } else if (dbType === 'relational' && database === 'mysql' && action === 'delete') {
     model.find(req.params.id).remove(function(err) {
       logger.info({
@@ -104,8 +117,15 @@ dbHelper.prototype.del = function(dbType, database, action, model, req, res) {
 }
 
 dbHelper.prototype.count = function(dbType, database, action, model, req, res) {
-  if (dbType === 'document' && database === 'mongo' && action === 'create') {
-
+  if (dbType === 'document' && database === 'mongo' && action === 'count') {
+    mongo.getModel(model, action).count({}, function(err, count) {
+      logger.info({
+        result: count
+      });
+      res.send({
+        result: count
+      });
+    })
   } else if (dbType === 'relational' && database === 'mysql' && action === 'count') {
     model.find().count(function(err, count) {
       logger.info({

@@ -1,13 +1,10 @@
 'use strict';
 
-   var helper=require('../helpers/dbHelper'); 
+   var helper=require('../helpers/dbHelper');
    var _helper=new helper();
+   var logger=require('../config/logger');
+   var controller={};
 
-   var logger=require('../config/logger'); 
-
-  var controller={};
-
-  
  controller.create= function(req, res) {
      logger.info({params:req.params});
      logger.info({requestBody:req.body});
@@ -85,7 +82,7 @@ controller.count=function(req, res) {
           res.send({error:err});
       }
  }
- 
+
  // Expose app
 exports = module.exports =  controller ;
- 
+

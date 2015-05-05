@@ -24,11 +24,14 @@ odm.prototype.bootStrapModels = function() {
   });
 }
 
-odm.prototype.getModel = function(modelName, json) {
+odm.prototype.getModel = function(modelName, action, json) {
   if (modelName == 'token') {
     var OAuthAccessTokens = mongoose.model('OAuthAccessTokens');
-    token = new OAuthAccessTokens(json);
-    return token;
+    if (action === 'create') {
+      token = new OAuthAccessTokens(json);
+      return token;
+    }
+    return OAuthAccessTokens;
   }
 }
 

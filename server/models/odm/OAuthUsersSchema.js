@@ -2,7 +2,7 @@
 
 module.exports = function(mongoose) {
 
- var db = mongoose.connection,
+  var db = mongoose.connection,
     Schema = mongoose.Schema,
     validate = require('mongoose-validator').validate,
     _ = require('lodash'),
@@ -13,11 +13,22 @@ module.exports = function(mongoose) {
   var TYPE = 'OAuthUsers';
 
   var schema = new Schema({
-    username: { type: String },
-    password: { type: String },
-    firstname: { type: String },
-    lastname: { type: String },
-    email: { type: String, default: '' }
+    username: {
+      type: String
+    },
+    password: {
+      type: String
+    },
+    firstname: {
+      type: String
+    },
+    lastname: {
+      type: String
+    },
+    email: {
+      type: String,
+      default: ''
+    }
   });
 
   /**
@@ -26,7 +37,7 @@ module.exports = function(mongoose) {
   schema.methods = {
 
   };
-  
+
   /**
    * Expose type to outside world.
    * @type {string}

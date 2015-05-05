@@ -21,12 +21,5 @@ function bootStrapModels(db) {
   Device = require('../../../models/orm/device')(db);
 }
 
-orm.prototype.getModel = function(modelName) {
-  if (modelName === 'device') {
-    return Device;
-  }
-}
-
-
 // Expose app
 exports = module.exports = orm;

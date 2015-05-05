@@ -12,13 +12,11 @@ function dbHelper(model) {
 
 dbHelper.prototype.create = function(dbType, database, action, model, json, res) {
   if (dbType === 'document' && database === 'mongo' && action === 'create') {
-    mongo.getModel(model, json.record).save(res.send(
-    {
+    mongo.getModel(model, action, json.record).save(res.send({
       inserted: {
         record: json.record
       }
-    }
-    ));
+    }));
   } else if (dbType === 'relational' && database === 'mysql' && action === 'create') {
 
     try {
@@ -42,8 +40,15 @@ dbHelper.prototype.create = function(dbType, database, action, model, json, res)
 }
 
 dbHelper.prototype.findOne = function(dbType, database, action, model, req, res) {
-  if (dbType === 'document' && database === 'mongo' && action === 'create') {
-
+  if (dbType === 'document' && database === 'mongo' && action === 'findOne') {
+    mongo.getModel(model, action).findOne({
+      "id": req.params.id
+    }, function(err, obj) {
+      if (err) return handleError(err);
+      res.send({
+        result: obj
+      });
+    })
   } else if (dbType === 'relational' && database === 'mysql' && action === 'findOne') {
     var call = model.get(req.params.id, function(err, obj) {
       logger.info({
@@ -58,8 +63,19 @@ dbHelper.prototype.findOne = function(dbType, database, action, model, req, res)
 
 
 dbHelper.prototype.findMany = function(dbType, database, action, model, req, res) {
-  if (dbType === 'document' && database === 'mongo' && action === 'create') {
-
+  if (dbType === 'document' && database === 'mongo' && action === 'findMany') {
+    mongo.getModel(model, action).find({
+      '_id': {
+        $in:req.params.id
+      }
+    }, function(err, obj) {
+      logger.info({
+        result: obj
+      });
+      res.send({
+        result: obj
+      });
+    });
   } else if (dbType === 'relational' && database === 'mysql' && action === 'findMany') {
     model.find(req.params, function(err, obj) {
       logger.info({

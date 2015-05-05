@@ -13,17 +13,24 @@ module.exports = function(mongoose) {
   var TYPE = 'OAuthAccessTokens';
 
   var schema = new Schema({
+    id: {
+      type: Number,
+      required: true
+    },
     accessToken: {
       type: String,
-      required: true
+      required: true,
+      unique: true
     },
     clientId: {
-      type: String,
-      required: true
+      type: Number,
+      required: true,
+      unique: true
     },
     userId: {
-      type: String,
-      required: true
+      type: Number,
+      required: true,
+       unique: true
     },
     expires: {
       type: String,

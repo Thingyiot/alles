@@ -42,7 +42,7 @@ dbHelper.prototype.create = function(dbType, database, action, model, json, res)
 dbHelper.prototype.findOne = function(dbType, database, action, model, req, res) {
   if (dbType === 'document' && database === 'mongo' && action === 'findOne') {
     mongo.getModel(model, action).findOne({
-      "id": req.params.id
+      "_id": req.params._id
     }, function(err, obj) {
       if (err) return handleError(err);
       res.send({
@@ -65,8 +65,8 @@ dbHelper.prototype.findOne = function(dbType, database, action, model, req, res)
 dbHelper.prototype.findMany = function(dbType, database, action, model, req, res) {
   if (dbType === 'document' && database === 'mongo' && action === 'findMany') {
     mongo.getModel(model, action).find({
-      'id': {
-        $in: req.params.id
+      '_id': {
+        $in: req.params._id
       }
     }, function(err, obj) {
       logger.info({
@@ -91,7 +91,7 @@ dbHelper.prototype.findMany = function(dbType, database, action, model, req, res
 dbHelper.prototype.del = function(dbType, database, action, model, req, res) {
   if (dbType === 'document' && database === 'mongo' && action === 'delete') {
     mongo.getModel(model, action).remove({
-      id: req.params.id
+      _id: req.params._id
     }, function(err) {
       if (!err) {
         logger.info({
